@@ -1,0 +1,52 @@
+{
+  "contact": "Contact us:",
+  "login": "Login / Sign Up",
+  "logout": "Logout",
+  "navigation": {
+    "admin": "Admin panel",
+    "profile": "Profile",
+    "movies": "Movies",
+    "schedule": "Schedule"
+  },
+  "loginPage": {
+    "title": "Login page",
+    "start": "Sign in to start your session",
+    "button": "Sign In",
+    "notmember": "Don't have an account? ",
+    "signup": "Sign Up"
+  },
+  "signupPage": {
+    "title": "Register page",
+    "start": "Create an Account",
+    "button": "Sign Up",
+    "member": "Already have an account? ",
+    "signin": "Sign In"
+  },
+  "changeLanguage": "Переключитися на українську",
+  "errors": {
+    "invalidEmail": "Invalid email",
+    "invalidPassword": "Incorrect password",
+    "notFound": "No account with that email was found",
+    "inUse": "Email already in use",
+    "weakPassword": "Password should be at least 6 characters",
+    "loginDefault": "Email or password is incorrect",
+    "signupDefault": "Something is wrong"
+  },
+  "placeholders": {
+    "email": "Email",
+    "password": "Password",
+    "repeat": "Repeat password",
+    "name": "Full name",
+    "username": "Username",
+    "phone": "Phone number",
+    "birthday": "Birthday",
+    "card": "Credit card",
+    "address": "Address",
+    "search": "Search",
+    "date": "Choose date"
+  },
+  "today": "Watch today",
+  "soon": "Watch soon",
+  "gallery": "Gallery",
+  "copyright": "Website development: AVADA-MEDIA. ©KinoCMS 2016, All rights reserved."
+}
