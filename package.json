@@ -8,13 +8,22 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@fullcalendar/core": "^6.1.4",
+    "@fullcalendar/daygrid": "^6.1.4",
+    "@fullcalendar/interaction": "^6.1.4",
+    "@fullcalendar/list": "^6.1.4",
+    "@fullcalendar/timegrid": "^6.1.4",
+    "@fullcalendar/vue3": "^6.1.4",
+    "@intlify/unplugin-vue-i18n": "^0.9.2",
     "@vuepic/vue-datepicker": "^3.6.4",
     "core-js": "^3.8.3",
     "firebase": "^9.15.0",
     "pinia": "^2.0.29",
     "pinia-plugin-persistedstate": "^3.0.2",
+    "swiper": "^9.0.5",
     "vue": "^3.2.13",
     "vue-accessible-color-picker": "^4.1.2",
+    "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
