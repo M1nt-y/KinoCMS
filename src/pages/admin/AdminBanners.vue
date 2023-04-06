@@ -47,7 +47,7 @@
             <option value="5">5</option>
           </select>
         </div>
-        <button class="btn btn-primary" @click="bannersStore.uploadMovieBanners">Save</button>
+        <button class="btn btn-primary" @click="handleUploadMovieBanners">Save</button>
       </div>
     </div>
     <h2>Background banner</h2>
@@ -120,7 +120,7 @@
             <option value="5">5</option>
           </select>
         </div>
-        <button class="btn btn-primary" @click="bannersStore.uploadNewsBanners">Save</button>
+        <button class="btn btn-primary" @click="handleUploadNewsBanners">Save</button>
       </div>
     </div>
   </div>
@@ -136,9 +136,10 @@ bannersStore.getMovieBanners();
 bannersStore.getBackground();
 bannersStore.getNewsBanners();
 
-function movieBannersSelected(input) {
+async function movieBannersSelected(input) {
   let banners = input.target.files;
   for (let i = 0; i < banners.length; i++) {
+    await new Promise(resolve => setTimeout(resolve, 1));
     bannersStore.movieBanners.data.push({
       id: bannersStore.movieBanners.data.length,
       name: 'banner-' + Date.now(),
@@ -153,6 +154,11 @@ function movieBannersSelected(input) {
       url: URL.createObjectURL(banners[i])
     })
   }
+}
+function handleUploadMovieBanners() {
+  bannersStore.uploadMovieBanners().then(() => {
+    bannersStore.uploadMoviesData();
+  });
 }
 function bgFileSelected(img) {
   let file = img.target.files[0];
@@ -173,9 +179,10 @@ function bgFileSelected(img) {
 function updateColor(eventData) {
   bannersStore.background.color = eventData.colors.hex;
 }
-function newsBannersSelected(input) {
+async function newsBannersSelected(input) {
   let banners = input.target.files;
   for (let i = 0; i < banners.length; i++) {
+    await new Promise(resolve => setTimeout(resolve, 1));
     bannersStore.newsBanners.data.push({
       id: bannersStore.newsBanners.data.length,
       name: 'banner-' + Date.now(),
@@ -189,6 +196,11 @@ function newsBannersSelected(input) {
       url: URL.createObjectURL(banners[i])
     })
   }
+}
+function handleUploadNewsBanners() {
+  bannersStore.uploadNewsBanners().then(() => {
+    bannersStore.uploadNewsData();
+  })
 }
 </script>
 

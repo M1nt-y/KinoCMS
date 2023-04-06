@@ -124,7 +124,7 @@
         </div>
       </div>
     </div>
-    <button class="btn btn-primary" @click="pagesStore.uploadPage(id)">Save</button>
+    <button class="btn btn-primary" @click="handleUpload(id)">Save</button>
   </div>
 </template>
 
@@ -214,7 +214,8 @@ function addMainImage(image) {
   pagesStore.pagesList[props.id].images[lang].main.url = URL.createObjectURL(image);
   pagesStore.pagesList[props.id].images[lang].main.uploaded = false;
 }
-function addImage(image) {
+async function addImage(image) {
+  await new Promise(resolve => setTimeout(resolve, 1));
   let lang = pagesStore.pagesList[props.id].language.index;
   let i = pagesStore.pagesList[props.id].data[lang].gallery.length;
   if (lang === 0) {
@@ -223,8 +224,7 @@ function addImage(image) {
       name: pagesStore.pagesList[props.id].name + '-' + Date.now() + '-en',
       url: null
     });
-  }
-  else {
+  } else {
     pagesStore.pagesList[props.id].data[lang].gallery.push({
       id: i,
       name: pagesStore.pagesList[props.id].name + '-' + Date.now() + '-ua',
@@ -252,7 +252,11 @@ function deleteImage(index) {
     }
   }
 }
-
+function handleUpload(id) {
+  pagesStore.uploadPage(id).then(() => {
+    pagesStore.uploadPageData(id);
+  });
+}
 watch(() => pagesStore.uploaded, (value) => {
   if (value) {
     router.go(-1);

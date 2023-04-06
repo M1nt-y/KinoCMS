@@ -123,7 +123,8 @@ function addBanner(image) {
   cinemaStore.cinemaList[props.id].images[lang].banner.url = URL.createObjectURL(image);
   cinemaStore.cinemaList[props.id].images[lang].banner.uploaded = false;
 }
-function addImage(image) {
+async function addImage(image) {
+  await new Promise(resolve => setTimeout(resolve, 1));
   let lang = cinemaStore.cinemaList[props.id].language.index;
   let i = cinemaStore.cinemaList[props.id].data[lang].gallery.length;
   if (lang === 0) {
@@ -132,8 +133,7 @@ function addImage(image) {
       name: cinemaStore.cinemaList[props.id].name + '-' + Date.now() + '-en',
       url: null
     });
-  }
-  else {
+  } else {
     cinemaStore.cinemaList[props.id].data[lang].gallery.push({
       id: i,
       name: cinemaStore.cinemaList[props.id].name + '-' + Date.now() + '-ua',
@@ -261,6 +261,12 @@ function deleteHall(i) {
       cinemaStore.cinemaList[props.id].halls[j].id = j;
     }
   }
+}
+
+function handleUpload(id) {
+  cinemaStore.uploadCinema(id).then(() => {
+    cinemaStore.uploadCinemaData(id);
+  });
 }
 
 watch(() => cinemaStore.uploaded, (value) => {

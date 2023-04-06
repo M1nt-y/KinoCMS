@@ -108,7 +108,8 @@ function addMainImage(image) {
   specialsStore.offerList[props.id].images[lang].main.url = URL.createObjectURL(image);
   specialsStore.offerList[props.id].images[lang].main.uploaded = false;
 }
-function addImage(image) {
+async function addImage(image) {
+  await new Promise(resolve => setTimeout(resolve, 1));
   let lang = specialsStore.offerList[props.id].language.index;
   let i = specialsStore.offerList[props.id].data[lang].gallery.length;
   if (lang === 0) {
@@ -117,8 +118,7 @@ function addImage(image) {
       name: specialsStore.offerList[props.id].name + '-' + Date.now() + '-en',
       url: null
     });
-  }
-  else {
+  } else {
     specialsStore.offerList[props.id].data[lang].gallery.push({
       id: i,
       name: specialsStore.offerList[props.id].name + '-' + Date.now() + '-ua',

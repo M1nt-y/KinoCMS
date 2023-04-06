@@ -155,13 +155,7 @@ export const useMovieStore = defineStore({
                     }
                 }
             }
-            for (let i = 0; i < this.movieList[id].data.length; i++) {
-                for (let j = 0; j < this.movieList[id].data[i].gallery.length; j++) {
-                    if (this.movieList[id].data[i].gallery[j].url !== null && j === this.movieList[id].data[i].gallery.length-1 && i === this.movieList[id].data.length-1) {
-                        this.uploadMovieData(id);
-                    }
-                }
-            }
+            await new Promise(resolve => setTimeout(resolve, 100));
         },
         async uploadMovieData(id) {
             const docData = {
@@ -350,13 +344,7 @@ export const useMovieStore = defineStore({
                     }
                 }
             }
-            for (let i = 0; i < this.upcomingList[id].data.length; i++) {
-                for (let j = 0; j < this.upcomingList[id].data[i].gallery.length; j++) {
-                    if (this.upcomingList[id].data[i].gallery[j].url !== null && j === this.upcomingList[id].data[i].gallery.length-1 && i === this.upcomingList[id].data.length-1) {
-                        this.uploadUpcomingData(id);
-                    }
-                }
-            }
+            await new Promise(resolve => setTimeout(resolve, 100));
         },
         async uploadUpcomingData(id) {
             const docData = {

@@ -69,7 +69,7 @@
         </div>
       </div>
     </div>
-    <button class="btn btn-primary" @click="newsStore.uploadNews(id)">Save</button>
+    <button class="btn btn-primary" @click="handleUpload(id)">Save</button>
   </div>
 </template>
 
@@ -111,7 +111,8 @@ function addMainImage(image) {
   newsStore.newsList[props.id].images[lang].main.url = URL.createObjectURL(image);
   newsStore.newsList[props.id].images[lang].main.uploaded = false;
 }
-function addImage(image) {
+async function addImage(image) {
+  await new Promise(resolve => setTimeout(resolve, 1));
   let lang = newsStore.newsList[props.id].language.index;
   let i = newsStore.newsList[props.id].data[lang].gallery.length;
   if (lang === 0) {
@@ -120,8 +121,7 @@ function addImage(image) {
       name: newsStore.newsList[props.id].name + '-' + Date.now() + '-en',
       url: null
     });
-  }
-  else {
+  } else {
     newsStore.newsList[props.id].data[lang].gallery.push({
       id: i,
       name: newsStore.newsList[props.id].name + '-' + Date.now() + '-ua',
@@ -149,7 +149,11 @@ function deleteImage(index) {
     }
   }
 }
-
+function handleUpload(id) {
+  newsStore.uploadNews(id).then(() => {
+    newsStore.uploadNewsData(id);
+  });
+}
 watch(() => newsStore.uploaded, (value) => {
   if (value) {
     router.go(-1);

@@ -158,6 +158,7 @@ export const useSpecialsStore = defineStore({
                     }
                 }
             }
+            await new Promise(resolve => setTimeout(resolve, 100));
         },
         async uploadOfferData(id) {
             const docData = {

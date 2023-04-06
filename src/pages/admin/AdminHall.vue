@@ -109,7 +109,8 @@ function addBanner(image) {
   cinemaStore.cinemaList[props.parent].halls[props.id].images[lang].banner.uploaded = false;
 }
 
-function addImage(image) {
+async function addImage(image) {
+  await new Promise(resolve => setTimeout(resolve, 1));
   let lang = cinemaStore.cinemaList[props.parent].language.index, i;
   if (lang === 0) {
     i = cinemaStore.cinemaList[props.parent].halls[props.id].data[lang].gallery.length;
@@ -118,8 +119,7 @@ function addImage(image) {
       name: cinemaStore.cinemaList[props.parent].halls[props.id].name + '-' + Date.now() + '-en',
       url: null
     });
-  }
-  else {
+  } else {
     i = cinemaStore.cinemaList[props.parent].halls[props.id].data[lang].gallery.length;
     cinemaStore.cinemaList[props.parent].halls[props.id].data[lang].gallery.push({
       id: i,

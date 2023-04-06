@@ -92,11 +92,7 @@ export const useBannersStore = defineStore({
                     }
                 }
             }
-            for (let i = 0; i < this.movieBanners.data.length; i++) {
-                if (i === this.movieBanners.data.length - 1 && this.movieBanners.data[i].image !== null) {
-                    this.uploadMoviesData();
-                }
-            }
+            await new Promise(resolve => setTimeout(resolve, 100));
         },
         async uploadMoviesData() {
             const docData = {
@@ -221,11 +217,7 @@ export const useBannersStore = defineStore({
                     }
                 }
             }
-            for (let i = 0; i < this.newsBanners.data.length; i++) {
-                if (i === this.newsBanners.data.length - 1 && this.newsBanners.data[i].image !== null) {
-                    this.uploadNewsData();
-                }
-            }
+            await new Promise(resolve => setTimeout(resolve, 100));
         },
         async uploadNewsData() {
             const docData = {

@@ -66,7 +66,7 @@
       </div>
     </div>
     <div class="movie__buttons">
-      <button class="btn btn-primary" @click="movieStore.uploadMovie(id)">Save</button>
+      <button class="btn btn-primary" @click="handleUpload(id)">Save</button>
       <button class="btn btn-default" @click="movieStore.resetMovie(id)" v-if="movieStore.movieList[id].uploaded">Reset</button>
     </div>
   </div>
@@ -108,7 +108,8 @@ function addMainImage(image) {
   movieStore.movieList[props.id].images[lang].main.url = URL.createObjectURL(image);
   movieStore.movieList[props.id].images[lang].main.uploaded = false;
 }
-function addImage(image) {
+async function addImage(image) {
+  await new Promise(resolve => setTimeout(resolve, 1));
   let lang = movieStore.movieList[props.id].language.index;
   let i = movieStore.movieList[props.id].data[lang].gallery.length;
   if (lang === 0) {
@@ -117,8 +118,7 @@ function addImage(image) {
       name: movieStore.movieList[props.id].name + '-' + Date.now() + '-en',
       url: null
     });
-  }
-  else {
+  } else {
     movieStore.movieList[props.id].data[lang].gallery.push({
       id: i,
       name: movieStore.movieList[props.id].name + '-' + Date.now() + '-ua',
@@ -145,6 +145,12 @@ function deleteImage(index) {
       movieStore.movieList[props.id].data[lang].gallery[i].id = movieStore.movieList[props.id].images[lang].gallery[i].id = i;
     }
   }
+}
+
+function handleUpload(id) {
+  movieStore.uploadMovie(id).then(() => {
+    movieStore.uploadMovieData(id);
+  });
 }
 
 watch(() => movieStore.uploaded, (value) => {

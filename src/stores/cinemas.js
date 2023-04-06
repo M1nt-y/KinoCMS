@@ -356,13 +356,7 @@ export const useCinemaStore = defineStore({
                     }
                 }
             }
-            for (let i = 0; i < this.cinemaList[id].data.length; i++) {
-                for (let j = 0; j < this.cinemaList[id].data[i].gallery.length; j++) {
-                    if (this.cinemaList[id].data[i].gallery[j].url !== null && j === this.cinemaList[id].data[i].gallery.length-1 && i === this.cinemaList[id].data.length-1) {
-                        this.uploadCinemaData(id);
-                    }
-                }
-            }
+            await new Promise(resolve => setTimeout(resolve, 100));
         },
         async uploadCinemaData(id) {
             const docData = {
@@ -372,7 +366,9 @@ export const useCinemaStore = defineStore({
             }
             await setDoc(doc(db, "cinemas", this.cinemaList[id].name), docData).then(() => {
                 if (this.cinemaList[id].halls.length) {
-                    this.uploadHalls(id);
+                    this.uploadHalls(id).then(() => {
+                        this.uploadHallsData(id);
+                    });
                 }
                 else {
                     this.loading = false;
@@ -439,15 +435,7 @@ export const useCinemaStore = defineStore({
                     }
                 }
             }
-            for (let i = 0; i < this.cinemaList[id].halls.length; i++) {
-                for (let j = 0; j < this.cinemaList[id].halls[i].data.length; j++) {
-                    for (let k = 0; k < this.cinemaList[id].halls[i].data[j].gallery.length; k++) {
-                        if (i === this.cinemaList[id].halls.length-1 && j === this.cinemaList[id].halls[i].data.length-1 && k === this.cinemaList[id].halls[i].data[j].gallery.length-1) {
-                            this.uploadHallsData(id);
-                        }
-                    }
-                }
-            }
+            await new Promise(resolve => setTimeout(resolve, 100));
         },
         async uploadHallsData(id) {
             const cinemaRef = doc(db, "cinemas", this.cinemaList[id].name);

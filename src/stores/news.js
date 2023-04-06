@@ -158,13 +158,7 @@ export const useNewsStore = defineStore({
                     }
                 }
             }
-            for (let i = 0; i < this.newsList[id].data.length; i++) {
-                for (let j = 0; j < this.newsList[id].data[i].gallery.length; j++) {
-                    if (this.newsList[id].data[i].gallery[j].url !== null && j === this.newsList[id].data[i].gallery.length-1 && i === this.newsList[id].data.length-1) {
-                        this.uploadNewsData(id);
-                    }
-                }
-            }
+            await new Promise(resolve => setTimeout(resolve, 100));
         },
         async uploadNewsData(id) {
             const docData = {

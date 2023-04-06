@@ -216,17 +216,8 @@ export const usePagesStore = defineStore({
                         }
                     }
                 }
-                for (let i = 0; i < this.pagesList[id].data.length; i++) {
-                    for (let j = 0; j < this.pagesList[id].data[i].gallery.length; j++) {
-                        if (this.pagesList[id].data[i].gallery[j].url !== null && j === this.pagesList[id].data[i].gallery.length-1 && i === this.pagesList[id].data.length-1) {
-                            this.uploadPageData(id);
-                        }
-                    }
-                }
             }
-            else {
-                this.uploadPageData(id);
-            }
+            await new Promise(resolve => setTimeout(resolve, 100));
         },
         async uploadPageData(id) {
             const docData = {
