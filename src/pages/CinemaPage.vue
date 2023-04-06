@@ -6,7 +6,7 @@
         <div class="page__side-ad" />
         <h4>Halls: {{ halls.length }}</h4>
         <div class="page__side-halls">
-          <router-link class="hall" v-for="hall in halls" :key="hall.id" :to="customRoute(hall.data[0].title, title)">
+          <router-link class="hall" v-for="hall in halls" :key="hall.id" :to="customRoute(hall.data[0].title, props.title)">
             {{ hall.data[mainStore.currentLanguage.index].title }}
           </router-link>
         </div>
@@ -153,7 +153,7 @@ function customRoute(name, route) {
     return route + name.replace('event-', '');
   }
   else {
-    return route.replace(/[^a-zA-Z0-9 ]/g, '').toLowerCase().replace(/\s/g, '-') + '/' + name.replace(/[^a-zA-Z0-9 ]/g, '').toLowerCase().replace(/\s/g, '-')
+    return route + '/' + name.replace(/[^a-zA-Z0-9 ]/g, '').toLowerCase().replace(/\s/g, '-')
   }
 }
 </script>
